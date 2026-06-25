@@ -3,6 +3,7 @@
 This is a penetration test report of the website Owasp Juice shop conducted on http://localhost:3000 which showcases hands on experience in vulnerability spotting in areas like DOM XSS, SQLi, BOLA, Information disclosure and showcases my expertise in using tools like Burp Suite for reconnaisance. 
 
 These vulnerabilities were spotted both manually as well as using burp suite and highlights unauthorised access to execute sql commands as well as Javascript and privelege escalation.
+Actual link: https://preview.owasp-juice.shop/#/
 ## Scope
 The vulnerability analysis was done on the basis of 
 1) exposed endpoints
