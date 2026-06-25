@@ -58,6 +58,9 @@ The user can access another user's resources and personal details without author
 2) intercept the get request in burp suite since few api requests are sent in the backend 
 3) send the request in proxy to repeater
 4) change the product id and observe the results in the response tab
+#### Proof 
+<img width="725" height="389" alt="Screenshot 2026-06-25 142058" src="https://github.com/user-attachments/assets/9486c096-124a-49f1-b99c-4791a3836421" />
+In the given screenshot, observe line 1. The /basket/6 has been changed to /basket/5 allowing me to access someone elses cart
 #### Impact
 Sensitive information of a user including address and credit card details are vulnerable and can be accessed by anyone publicly
 #### Solution
@@ -80,10 +83,15 @@ The site was checked if it had an SQLi vulnerability at the authentication end p
 5) -- is written at the end to render the password parameter useless by treating it as a comment
 
 #### Proof of concept
+
+<img width="917" height="366" alt="Screenshot 2026-06-25 150928" src="https://github.com/user-attachments/assets/a72c607c-c061-4043-ab69-4663264fa4ff" />
+
 1) The application responded with HTTP 200 OK
 2) Valid JWT
 3) Admin account access
-   
+
+<img width="938" height="370" alt="Screenshot 2026-06-25 150951" src="https://github.com/user-attachments/assets/0af05d69-9977-451b-bc59-44330732743d" />
+
 #### Impact 
 Unauthorised access to the admin account
 
