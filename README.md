@@ -100,7 +100,13 @@ The dom based vulnerability was found in the search bar since the application ag
 #### Area of vulnerability
 product search bar
 #### Proof
+
+<img width="955" height="388" alt="Screenshot 2026-06-25 162135" src="https://github.com/user-attachments/assets/8401f772-6916-432e-b9f1-654f0b87c019" />
+
 "<iframe src="javascript:alert(`xss`)">" was the payload that was injected in the product search bar which caused the alert query to be added to the javascript causing an alert box could appear. This proves that the dom is vulnerable and if a malicious payload was crafted, it could be inserted into the DOM easily. In this context, iframe was used to load the JS url rather than script since the website had added <script> to its blocklist which allows us to take advantage of this less obvious XSS command.
+
+<img width="953" height="400" alt="Screenshot 2026-06-25 162126" src="https://github.com/user-attachments/assets/9910b02b-f79f-4fa2-a649-5f146330ef77" />
+
 #### Impact
 1) crafted payloads can redirect users to malicious websites
 2) steal session tokens and cookies
@@ -110,6 +116,28 @@ product search bar
 2) Awareness should be increased to add alternative commands to the blockist like how <script> was added so there would be no room for penetration
 
 ### Brute Password Forcing
+#### Severity
+Medium
+#### Owasp Mapping
+OWASP Top 10 2021: A07 – Identification and Authentication Failures
+OWASP API Security Top 10 2023: API2 – Broken Authentication
+#### Description
+The very first thing when I came across the password field was whether it can withstand brute force attacks. That is, to check if there is a limit on the number of post requests you can send to prevent password hashing. However there was no such limitation making it prone to loading a password word list on burp suite intruder and trying to force the password.
+#### Affected End point
+POST /rest/user/login
+#### Proof
+
+<img width="955" height="400" alt="Screenshot 2026-06-25 161138" src="https://github.com/user-attachments/assets/b1d0a399-d939-4bf0-9192-75055069bf53" />
+
+A sniper attack was configured by passing the request to the intruder tab in burp suite and was loaded with a password.txt folder to try and brute force the password. Despite hundreds of attempts, no HTTP 429 Too many requests error arose.
+
+<img width="920" height="455" alt="Screenshot 2026-06-25 161406" src="https://github.com/user-attachments/assets/a87cddec-4832-4315-b45f-44f078d72361" />
+#### Impact:
+Automated password guessing leading to unauthorised access
+#### Solution:
+Require captcha which cannot be bypassed or a secure multi factor authorisation system or limit the number of failed requests that can be sent at a time
+
+
 
 
 
