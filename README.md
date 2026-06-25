@@ -39,7 +39,15 @@ This gave us huge insights since
 8) The presence of a password parameter allows us to try and password hash using a common password wordlist IF the site does not set a limit to the number of post requests that can be provided thus enabling us to monitor the security
 
 
-   
+## Risk Summary
+
+| ID | Vulnerability | Severity | OWASP Top 10 (2021) | Risk |
+|----|---------------|----------|----------------------|------|
+| F-01 | Broken Object Level Authorization (BOLA) | High | A01 – Broken Access Control | High |
+| F-02 | SQL Injection (SQLi) | High | A03 – Injection | High |
+| F-03 | DOM-Based Cross-Site Scripting (XSS) | High | A03 – Injection | High |
+| F-04 | Missing Brute Force Protection | Medium | A07 – Identification and Authentication Failures | Medium |
+| F-05 | Improper Authentication Enforcement | Medium | A07 – Identification and Authentication Failures | Medium |
 ## Findings 
 
 ### Broken Level Object Authorisation(BOLA)
