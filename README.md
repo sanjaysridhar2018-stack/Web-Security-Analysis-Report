@@ -50,4 +50,26 @@ Unauthorised access to the admin account
 #### Solution
 Usage of parametrised SQL queries and dont concatenate the user input as an sql query 
 
+### DOM based cross side scripting 
+#### Severity 
+High
+#### Owasp 
+OWASP Top 10 2021: A03 – Injection
+#### Description
+The dom based vulnerability was found in the search bar since the application again failed to sanitize the user input before inserting it in the dom. Thus the user is allowed to inject a malicious payload in the javascript 
+#### Area of vulnerability
+product search bar
+#### Proof
+"<iframe src="javascript:alert(`xss`)">" was the payload that was injected in the product search bar which caused the alert query to be added to the javascript causing an alert box could appear. This proves that the dom is vulnerable and if a malicious payload was crafted, it could be inserted into the DOM easily. In this context, iframe was used to load the JS url rather than script since the website had added <script> to its blocklist which allows us to take advantage of this less obvious XSS command.
+#### Impact
+1) crafted payloads can redirect users to malicious websites
+2) steal session tokens and cookies
+3) phising attacks
+#### Solution
+1) Sanitize the user query before adding it to the DOM
+2) Awareness should be increased to add alternative commands to the blockist like how <script> was added so there would be no room for penetration
+
+### Brute Password Forcing
+
+
 
