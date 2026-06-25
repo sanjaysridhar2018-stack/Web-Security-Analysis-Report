@@ -40,41 +40,55 @@ This gave us huge insights since
 
    
 ## Findings 
+
 ### Broken Level Object Authorisation(BOLA)
+
 #### Severity
 High
+
 #### OWASP 
 1) OWASP API Top 10: API1 - Broken Object Level Authorization
 2) OWASP Top 10: A01 - Broken Access Control
+   
 #### End points
 1) GET /api/basket/id
 2) GET /api/addresss/id
 3) GET /api/deliverys/id
 4) GET /api/card/id
+   
 #### Description
 The user can access another user's resources and personal details without authorisation by just changing the ID parameter
+
 #### Steps
 1) Login as user
 2) intercept the get request in burp suite since few api requests are sent in the backend 
 3) send the request in proxy to repeater
 4) change the product id and observe the results in the response tab
+   
 #### Proof 
 <img width="725" height="389" alt="Screenshot 2026-06-25 142058" src="https://github.com/user-attachments/assets/9486c096-124a-49f1-b99c-4791a3836421" />
 In the given screenshot, observe line 1. The /basket/6 has been changed to /basket/5 allowing me to access someone elses cart
+
 #### Impact
 Sensitive information of a user including address and credit card details are vulnerable and can be accessed by anyone publicly
+
 #### Solution
 Validate ownership of an object before someone can access it by adding a layer of authorisation
+
 ### SQL Injection
+
 #### Severity 
 High
 #### OWASP
 OWASP Top 10 2021: A03 – Injection
 OWASP API Security Top 10 2023: API8 – Security Misconfiguration
+
 #### Endpoints
 POST /rest/user/login
+
 #### Description 
 The site was checked if it had an SQLi vulnerability at the authentication end point. Since the application failed to secure the end point, an SQL payload was crafted and sent to bypass the password parameter. This helped in bypassing the authentication end point and accessing the admin account
+
 #### Steps
 1) At the login page enter ' as the username parameter to see how it responds and if its vulnerable to SQLi 
 2) If its vulnerable craft a payload by rendering the password parameter as a comment such that its not asked for but at the same time make sure the authentication is bypassed by always returning a true statement
@@ -99,14 +113,19 @@ Unauthorised access to the admin account
 Usage of parametrised SQL queries and dont concatenate the user input as an sql query 
 
 ### DOM based cross side scripting 
+
 #### Severity 
 High
+
 #### Owasp 
 OWASP Top 10 2021: A03 – Injection
+
 #### Description
 The dom based vulnerability was found in the search bar since the application again failed to sanitize the user input before inserting it in the dom. Thus the user is allowed to inject a malicious payload in the javascript 
+
 #### Area of vulnerability
 product search bar
+
 #### Proof
 
 <img width="955" height="388" alt="Screenshot 2026-06-25 162135" src="https://github.com/user-attachments/assets/8401f772-6916-432e-b9f1-654f0b87c019" />
