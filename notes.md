@@ -12,3 +12,6 @@
 | Post | /rest/user/login | login | Yes | 
 | Post | /socket.io/?EIO=4&transport=polling&t=Pxzw6k8&sid=7LwQeY3JyRYCkqr1AAAI | Change language | Yes |
 
+admin endpoint uses jwt twice
+<img width="736" height="419" alt="image" src="https://github.com/user-attachments/assets/d38aa75a-7102-4434-9fcd-1b76077acaf7" />
+
