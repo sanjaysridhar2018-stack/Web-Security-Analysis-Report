@@ -26,6 +26,8 @@ Validate ownership of an object before someone can access it by adding a layer o
 #### Severity 
 High
 #### OWASP
+OWASP Top 10 2021: A03 – Injection
+OWASP API Security Top 10 2023: API8 – Security Misconfiguration
 #### Endpoints
 POST /rest/user/login
 #### Description 
