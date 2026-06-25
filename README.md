@@ -167,6 +167,32 @@ Automated password guessing leading to unauthorised access
 #### Solution:
 Require captcha which cannot be bypassed or a secure multi factor authorisation system or limit the number of failed requests that can be sent at a time
 
+### Improper Authorisation Enforcement
+#### Severity 
+Moderate
+#### Owasp 
+A07 – Identification and Authentication Failures
+#### Exposed endpoint
+/rest/admin/application-configuration
+#### Proof
+While investigating the endpoint since it is present in the admin directory, it was peculiar that the JWT was stored in 2 seperate locations 
+1) the authorisation: bearer header
+2) cookies
+So I tried deleting the header first which gave the following result:
+
+<img width="775" height="363" alt="Screenshot 2026-06-25 144819" src="https://github.com/user-attachments/assets/9ae29ea1-de32-4701-94c2-e8cb60142bf3" />
+
+Then i tried deleting only the cookie which gave a similar result but on deleting both, it exposed this admin endpoint which shows the lack of security of the site 
+
+<img width="732" height="289" alt="image" src="https://github.com/user-attachments/assets/c30ede27-a1e7-4759-b965-0fbafc52f66d" />
+
+#### Impact
+Attacker can access the resources which only the admin is meant to access
+
+#### Remediation
+Validate JWTs before processing requests
+
+
 ## Conclusion
 The pentesting of the OWASP Juice shop led to 5 critical - medium vulnerabilities which have been deeply analysed proving that they possess a strong threat. Immediate remediations must be done to protect the OWASP Juice shop site from being exploited in the future
 
