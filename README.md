@@ -160,13 +160,14 @@ A sniper attack was configured by passing the request to the intruder tab in bur
 
 <img width="920" height="455" alt="Screenshot 2026-06-25 161406" src="https://github.com/user-attachments/assets/a87cddec-4832-4315-b45f-44f078d72361" />
 
-## Conclusion
-The pentesting of the OWASP Juice shop led to 5 critical - medium vulnerabilities which have been deeply analysed proving that they possess a strong threat. Immediate remediations must be done to protect the OWASP Juice shop site from being exploited in the future
 #### Impact:
 Automated password guessing leading to unauthorised access
 
 #### Solution:
 Require captcha which cannot be bypassed or a secure multi factor authorisation system or limit the number of failed requests that can be sent at a time
+
+## Conclusion
+The pentesting of the OWASP Juice shop led to 5 critical - medium vulnerabilities which have been deeply analysed proving that they possess a strong threat. Immediate remediations must be done to protect the OWASP Juice shop site from being exploited in the future
 
 
 
