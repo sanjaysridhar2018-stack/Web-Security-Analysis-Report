@@ -11,7 +11,7 @@ The vulnerability analysis was done on the basis of
 4) Client side security to santize the user input
 
 ## Methodology
-The reconnaisance process was started by looking around the pages of the website and getting the requests stored on burp suite later at the same time which would help us in analysis later on. This was required to find exposed endpoints, possible oppurtunities for privelege escalation, to find stored cookies and JWTs which can be exploited. The important findings are listed in a table below:
+The reconnaisance process was started by looking around the pages of the website and getting the requests stored on burp suite later at the same time which would help us in analysis later on. This was required to find exposed endpoints, possible oppurtunities for privelege escalation, to find stored cookies and JWTs which can be exploited. Then later on an account could be created to check if a JWT is stored and analysis could be made on it. The important requests are listed in a table below:
 
 | Method | Endpoint | Purpose | Auth Cookies/JWT |
 |--------|----------|---------|----------|
@@ -27,9 +27,18 @@ The reconnaisance process was started by looking around the pages of the website
 | Post | /rest/user/login | login | Yes | 
 | Post | /socket.io/?EIO=4&transport=polling&t=Pxzw6k8&sid=7LwQeY3JyRYCkqr1AAAI | Change language | Yes |
 
-This led us to test the following vulnerabilities
+This gave us huge insights since 
+1) basket, addresss, deliverys, cards endpoints have a possibility of being exploited by BOLA -critical
+2) the rest/admin gives potential access to an admin endpoint - critical 
+3) /user/login has a post query which gives us the chance to perform SQLi and potentially bypass it if vulnerability exists- critical 
+4) /captcha suggests that maybe there is a vulnerability suggesting that captcha can be bypassed - low
+5) the lang paramter is a very critical vulnerability; it not only takes the languages available like en or fr but since the value of the parameter is not authorised, there is a risk of simply accepting what the user has provided. So instead of lang = en the user can write lang = php and load a payload- critical but not discussed
+6) session management: the jwt token is stored twice, once along with the cookies and once with the authorisation: bearer header which suggests that maybe either omitting one of those or possibly even both of those can give us some insights-moderate
+7) The search bar present in the website gives us an oppurunity to maybe perform a cross side script if the user input is not sanitized thus allowing us to enter a payload into the DOM. - critical
+8) The presence of a password parameter allows us to try and password hash using a common password wordlist IF the site does not set a limit to the number of post requests that can be provided thus enabling us to monitor the security
 
 
+   
 ## Findings 
 ### Broken Level Object Authorisation(BOLA)
 #### Severity
