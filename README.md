@@ -140,8 +140,10 @@ POST /rest/user/login
 A sniper attack was configured by passing the request to the intruder tab in burp suite and was loaded with a password.txt folder to try and brute force the password. Despite hundreds of attempts, no HTTP 429 Too many requests error arose.
 
 <img width="920" height="455" alt="Screenshot 2026-06-25 161406" src="https://github.com/user-attachments/assets/a87cddec-4832-4315-b45f-44f078d72361" />
+
 #### Impact:
 Automated password guessing leading to unauthorised access
+
 #### Solution:
 Require captcha which cannot be bypassed or a secure multi factor authorisation system or limit the number of failed requests that can be sent at a time
 
