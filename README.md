@@ -9,7 +9,26 @@ The vulnerability analysis was done on the basis of
 2) Session and cookie management
 3) Information disclosure
 4) Client side security to santize the user input
-   
+
+## Methodology
+The reconnaisance process was started by looking around the pages of the website and getting the requests stored on burp suite later at the same time which would help us in analysis later on. This was required to find exposed endpoints, possible oppurtunities for privelege escalation, to find stored cookies and JWTs which can be exploited. The important findings are listed in a table below:
+
+| Method | Endpoint | Purpose | Auth Cookies/JWT |
+|--------|----------|---------|----------|
+| Get | rest/product/1/reviews| get reviews of product 1 | Yes |
+| Post | api/Feedbacks/ | post feedback | Yes |
+| Get | /rest/user/whoami?fields=id,email | returns info about authenticated user| Yes |
+| Get | /rest/captcha | captcha verification| Yes |
+| Get | /rest/basket/6 | View basket | Yes |
+| Get | /api/Addresss/7 | address of user| Yes |
+| Get | /api/Deliverys/1 | deliveriess of user | Yes | 
+| Get | /api/cards/1 | credit card details | Yes |
+| Get | /rest/admin/application-configuration | Not sure | Yes | 
+| Post | /rest/user/login | login | Yes | 
+| Post | /socket.io/?EIO=4&transport=polling&t=Pxzw6k8&sid=7LwQeY3JyRYCkqr1AAAI | Change language | Yes |
+
+This led us to test the following vulnerabilities
+
 
 ## Findings 
 ### Broken Level Object Authorisation(BOLA)
